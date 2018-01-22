@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblOrderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strOrderTitle"
+            style="@style/CustomTitleStyle">
+        </TextView>
+        <TextView
+            android:id="@+id/lblOrderDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strOrderDescription"
+            style="@style/CustomSubTitleStyle">
+        </TextView>
+        <TextView
+            android:id="@+id/lblBasicInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strOrderBasicInfo"
+            style="@style/CustomSubTitleStyle">
+        </TextView>
+
+        <EditText
+            android:id="@+id/txtFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            style="@style/CustomTextBoxStyle"
+            android:text="First Name" />
+
+        <EditText
+            android:id="@+id/txtLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            style="@style/CustomTextBoxStyle"
+            android:text="Last Name" />
+
+        <TextView
+            android:id="@+id/txtShippingInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strOrderShippingInfo"
+            style="@style/CustomSubTitleStyle">
+        </TextView>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BfA-app</string>
+    <string name="action_settings">Settings</string>
+    <string name="strOrderTitle">Place Your Free Order</string>
+    <string name="strOrderDescription">All orders are completely free, including shipping. Bibles for America respects your privacy. We do not fill orders made on behalf of others. Please order for yourself only.
+    </string>
+    <string name="strOrderBasicInfo">BASIC INFORMATION</string>
+    <string name="strOrderShippingInfo">SHIPPING INFORMATION</string>
+</resources>
