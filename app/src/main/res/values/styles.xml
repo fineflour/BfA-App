@@ -18,6 +18,8 @@
 
     <style name="CustomTitleStyle" >
         <item name="android:textColor">@color/colorDarkNavy</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:gravity" >center</item>
         <item name="android:textSize" >12pt</item>
         <item name="android:textStyle">bold</item>
@@ -28,6 +30,8 @@
 
     <style name="CustomSubTitleStyle" >
         <item name="android:textColor">@color/colorDarkNavy</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:gravity" >center</item>
         <item name="android:textSize" >9pt</item>
         <item name="android:textStyle">bold</item>
@@ -38,20 +42,35 @@
 
     <style name="CustomDescriptionStyle" >
         <item name="android:textColor">@color/colorDarkGray</item>
-        <item name="android:gravity" >center</item>
+        <item name="android:gravity">fill_horizontal</item>
         <item name="android:textSize" >8pt</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="CustomTextBoxStyle" >
         <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">15dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ellipsize">start</item>
         <item name="android:gravity">center</item>
+        <item name="android:ems">10</item>
+    </style>
+
+    <style name="CustomButtonStyle" >
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">start</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColor">@color/colorGold</item>
     </style>
 </resources>

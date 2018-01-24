@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -18,13 +19,12 @@
             android:text="@string/strOrderTitle"
             style="@style/CustomTitleStyle">
         </TextView>
+
         <TextView
             android:id="@+id/lblOrderDesc"
-            android:layout_width="match_parent"
+            style="@style/CustomDescriptionStyle"
             android:layout_height="wrap_content"
-            android:text="@string/strOrderDescription"
-            style="@style/CustomSubTitleStyle">
-        </TextView>
+            android:text="@string/strOrderDescription"></TextView>
         <TextView
             android:id="@+id/lblBasicInfo"
             android:layout_width="match_parent"
@@ -33,23 +33,38 @@
             style="@style/CustomSubTitleStyle">
         </TextView>
 
+
+
         <EditText
             android:id="@+id/txtFirstName"
+            style="@style/CustomTextBoxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
             android:ems="10"
+            android:hint="First Name"
             android:inputType="textPersonName"
-            style="@style/CustomTextBoxStyle"
-            android:text="First Name" />
+            android:text="@string/strFirstName" />
 
         <EditText
             android:id="@+id/txtLastName"
+            style="@style/CustomTextBoxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
             android:ems="10"
+            android:hint="Last Name"
             android:inputType="textPersonName"
+            android:text="@string/strLastName" />
+
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
             style="@style/CustomTextBoxStyle"
-            android:text="Last Name" />
+            android:text="@string/strEmail"
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/txtShippingInfo"
@@ -58,5 +73,67 @@
             android:text="@string/strOrderShippingInfo"
             style="@style/CustomSubTitleStyle">
         </TextView>
+
+        <EditText
+            android:id="@+id/txtAddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            style="@style/CustomTextBoxStyle"
+            android:text="@string/strAddress1"
+            android:inputType="text|textPostalAddress" />
+
+        <EditText
+            android:id="@+id/txtAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            style="@style/CustomTextBoxStyle"
+            android:text="@string/strAddress2"
+            android:inputType="text|textPostalAddress" />
+
+        <EditText
+            android:id="@+id/txtCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            style="@style/CustomTextBoxStyle"
+            android:text="@string/strCity"
+            android:inputType="text|textPostalAddress" />
+
+        <Spinner
+            android:id="@+id/spinerStates"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:drawable/edit_text"
+            style="@style/CustomTextBoxStyle" />
+
+
+        <EditText
+            android:id="@+id/txtZipcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            style="@style/CustomTextBoxStyle"
+            android:text="@string/strZipCode"
+            android:inputType="textPostalAddress" />
+
+        <CheckBox
+            android:id="@+id/chkBlogSubscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strBlogSubscribe" />
+
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strPlaceOrder"
+            style="@style/CustomTextBoxStyle" />
+
+
+
     </LinearLayout>
 </ScrollView>
