@@ -1,8 +1,11 @@
 package org.bfa.bfa_app;
 
 import android.app.Activity;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -16,9 +19,14 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
+import static android.content.ContentValues.TAG;
 
 public class OrderActivity extends Activity {
     private String OPS_URL = "https://ops.bfa.org/api/v1/orders.json?api_key=AE791F6F9AE5D8E5";
@@ -31,20 +39,19 @@ public class OrderActivity extends Activity {
     private EditText txtCity;
     private EditText txtZipcode;
     private CheckBox chkBlogSubscribe;
-    private Spinner staticSpinner;
+    private Spinner spnState;
 
     String firstName = "";
     String lastName = "";
     String Email = "";
     String Address1 = "";
     String Address2 = "";
-    String City = "";
+    String cityName = "";
     String zipCode = "";
-    String requestMethod = "Mobile";
-    String product = "1";
+    String requestMethod = "android";
     String ipAddress = "";
-
-
+    String stateName = "";
+    String productId = "1";
 
 
     /*
@@ -69,6 +76,21 @@ public class OrderActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                    .getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = (NetworkInterface) en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                        .getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        ipAddress = inetAddress .getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.e(TAG, "Exception in Get IP Address: " + ex.toString());
+        }
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -91,14 +113,15 @@ public class OrderActivity extends Activity {
         txtCity = (EditText)findViewById(R.id.txtCity);
         txtZipcode = (EditText)findViewById(R.id.txtZipcode);
         chkBlogSubscribe = (CheckBox) findViewById(R.id.chkBlogSubscribe);
-        staticSpinner = (Spinner) findViewById(R.id.spinerStates);
+        spnState = (Spinner) findViewById(R.id.spinerStates);
+        txtFirstName.requestFocus();
 
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
                 .createFromResource(this, R.array.strStates,
                         android.R.layout.simple_spinner_item);
         staticAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        staticSpinner.setAdapter(staticAdapter);
+        spnState.setAdapter(staticAdapter);
 
         Button btnPlaceOrder  = (Button)findViewById(R.id.btnPlaceOrder);
 
@@ -112,6 +135,8 @@ public class OrderActivity extends Activity {
         });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,8 +173,9 @@ public class OrderActivity extends Activity {
             Email = txtEmail.getText().toString();
             Address1 = txtAddress1.getText().toString();
             Address2 = txtAddress2.getText().toString();
-            City = txtCity.getText().toString();
+            cityName = txtCity.getText().toString();
             zipCode = txtZipcode.getText().toString();
+            stateName = spnState.getSelectedItem().toString();
 
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -165,13 +191,18 @@ public class OrderActivity extends Activity {
                     "products": books.join('|'),
                     "ip_address": ip, */
 
-            params.add(new BasicNameValuePair("firstName", firstName ));
-            params.add(new BasicNameValuePair("lastName", lastName));
+            params.add(new BasicNameValuePair("firstname", firstName ));
+            params.add(new BasicNameValuePair("lastname", lastName));
+            params.add(new BasicNameValuePair("email_lists", Email));
             params.add(new BasicNameValuePair("address1", Address1 ));
             params.add(new BasicNameValuePair("address2", Address2 ));
-            params.add(new BasicNameValuePair("city", City ));
+            params.add(new BasicNameValuePair("city", cityName ));
             params.add(new BasicNameValuePair("zip", zipCode ));
-            params.add(new BasicNameValuePair("id_address", "12.0.0.1"));
+            params.add(new BasicNameValuePair("state", stateName));
+            params.add(new BasicNameValuePair("products", productId));
+            params.add(new BasicNameValuePair("id_address", ipAddress));
+            params.add(new BasicNameValuePair("request_method", requestMethod));
+
 
             ServiceHandler serviceClient = new ServiceHandler();
             String json = serviceClient.makeServiceCall(OPS_URL,
@@ -205,6 +236,10 @@ public class OrderActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
         }
+
+
+
+
 
     }
 }

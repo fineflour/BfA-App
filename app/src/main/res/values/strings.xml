@@ -10,7 +10,7 @@
     <string name="strLastName">Last Name*</string>
     <string name="strEmail">Email Address*</string>
     <string name="strAddress1">Street Address*</string>
-    <string name="strAddress2">Suite or Apartment # (Optional)</string>
+    <string name="strAddress2">Suite or Apartment #(Optional)</string>
     <string name="strCity">City*</string>
     <string name="strZipCode">Zip code*</string>
     <string name="strBlogSubscribe">Yes, send me weekly BfA blog posts and notify me when BfA offers a new book title.</string>

@@ -49,8 +49,8 @@
     </style>
     <style name="CustomTextBoxStyle" >
         <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">match_parent</item>
@@ -62,8 +62,8 @@
 
     <style name="CustomButtonStyle" >
         <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">match_parent</item>
@@ -71,6 +71,6 @@
         <item name="android:ellipsize">start</item>
         <item name="android:gravity">center</item>
         <item name="android:ems">10</item>
-        <item name="android:textColor">@color/colorGold</item>
+        <item name="android:background">@color/colorGold</item>
     </style>
 </resources>
