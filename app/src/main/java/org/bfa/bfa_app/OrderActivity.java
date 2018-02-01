@@ -1,11 +1,11 @@
 package org.bfa.bfa_app;
 
 import android.app.Activity;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.format.Formatter;
+import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -25,10 +25,18 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Locale;
-import static android.content.ContentValues.TAG;
 
-public class OrderActivity extends Activity {
+import static android.content.ContentValues.TAG;
+import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
+
+
+public class OrderActivity extends AppCompatActivity  {
     private String OPS_URL = "https://ops.bfa.org/api/v1/orders.json?api_key=AE791F6F9AE5D8E5";
     private Button btnPlaceOrder;
     private EditText txtFirstName;
@@ -40,6 +48,9 @@ public class OrderActivity extends Activity {
     private EditText txtZipcode;
     private CheckBox chkBlogSubscribe;
     private Spinner spnState;
+    private TextView txtMessage;
+    private Toolbar toolbar;
+    private TextView txtOrderResult;
 
     String firstName = "";
     String lastName = "";
@@ -52,30 +63,18 @@ public class OrderActivity extends Activity {
     String ipAddress = "";
     String stateName = "";
     String productId = "1";
+    String bfaWebsite = "http://www.bfa.org";
+    String bfaDonation = "https://contributions.biblesforamerica.org/support-bfa";
+    String Message = "";
+    String blogSubscription = "true";
 
-
-    /*
-      var data = {
-    "email": info.email,
-    "api_key": KEY,
-    "firstname": info.firstname,
-    "lastname": info.lastname,
-    "address1": info.address1,
-    "address2": info.address2,
-    "city": info.city,
-    "state": info.state,
-    "zip": info.zip,
-    "request_method": "web",
-    "products": books.join('|'),
-    "ip_address": ip,
-    "email_lists": email_lists.join('|')
-  }
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface
                     .getNetworkInterfaces(); en.hasMoreElements();) {
@@ -91,6 +90,8 @@ public class OrderActivity extends Activity {
         } catch (SocketException ex) {
             Log.e(TAG, "Exception in Get IP Address: " + ex.toString());
         }
+
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -103,8 +104,6 @@ public class OrderActivity extends Activity {
             }
         }); */
 
-
-
         txtFirstName = (EditText)findViewById(R.id.txtFirstName);
         txtLastName = (EditText)findViewById(R.id.txtLastName);
         txtEmail = (EditText)findViewById(R.id.txtEmail);
@@ -112,6 +111,7 @@ public class OrderActivity extends Activity {
         txtAddress2 = (EditText)findViewById(R.id.txtAddress2);
         txtCity = (EditText)findViewById(R.id.txtCity);
         txtZipcode = (EditText)findViewById(R.id.txtZipcode);
+        txtOrderResult = (TextView) findViewById(R.id.txtOrderResult);
         chkBlogSubscribe = (CheckBox) findViewById(R.id.chkBlogSubscribe);
         spnState = (Spinner) findViewById(R.id.spinerStates);
         txtFirstName.requestFocus();
@@ -125,39 +125,56 @@ public class OrderActivity extends Activity {
 
         Button btnPlaceOrder  = (Button)findViewById(R.id.btnPlaceOrder);
 
-        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+       btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 new AddNewOrder().execute();
+                v.setVisibility(View.INVISIBLE);
+                txtOrderResult.setText(R.string.msgOrderSent);
 
             }
         });
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_signin, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_order:
+                // User chose the "Settings" item, show the app settings UI...
+                break;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_download:
+
+                break;
+
+            case R.id.action_donation:
+
+                Intent browserBfADonation = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaWebsite));
+                startActivity(browserBfADonation);
+                break;
+
+            case R.id.action_bfa:
+                Intent browserBfAWebsite = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaDonation));
+                startActivity(browserBfAWebsite);
+                break;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private class AddNewOrder extends AsyncTask<String, Void, Void> {
@@ -176,32 +193,23 @@ public class OrderActivity extends Activity {
             cityName = txtCity.getText().toString();
             zipCode = txtZipcode.getText().toString();
             stateName = spnState.getSelectedItem().toString();
-
-
+            if (!chkBlogSubscribe.isChecked()) {
+                blogSubscription = "false";
+            }
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-          /*  "firstname": info.firstname,
-                    "lastname": info.lastname,
-                    "address1": info.address1,
-                    "address2": info.address2,
-                    "city": info.city,
-                    "state": info.state,
-                    "zip": info.zip,
-                    "request_method": "web",
-                    "products": books.join('|'),
-                    "ip_address": ip, */
 
             params.add(new BasicNameValuePair("firstname", firstName ));
             params.add(new BasicNameValuePair("lastname", lastName));
-            params.add(new BasicNameValuePair("email_lists", Email));
+            params.add(new BasicNameValuePair("email", Email));
             params.add(new BasicNameValuePair("address1", Address1 ));
             params.add(new BasicNameValuePair("address2", Address2 ));
             params.add(new BasicNameValuePair("city", cityName ));
             params.add(new BasicNameValuePair("zip", zipCode ));
             params.add(new BasicNameValuePair("state", stateName));
             params.add(new BasicNameValuePair("products", productId));
-            params.add(new BasicNameValuePair("id_address", ipAddress));
+            params.add(new BasicNameValuePair("ip_address", ipAddress));
             params.add(new BasicNameValuePair("request_method", requestMethod));
+            params.add(new BasicNameValuePair("subscriptions", blogSubscription));
 
 
             ServiceHandler serviceClient = new ServiceHandler();
@@ -215,11 +223,18 @@ public class OrderActivity extends Activity {
                     // checking for error node in json
                     if (!error) {
                         // new category created successfully
+                        Message = "Your order has been sent successfully!";
+                        txtMessage.setText(Message);
                         Log.e("Order added :",
                                 "> " + jsonObj.getString("message"));
+
                     } else {
+                        Message = "Your request can't be done";
+                        txtMessage.setText(Message);
                         Log.e("Add Order Error: ",
                                 "> " + jsonObj.getString("message"));
+
+
                     }
 
                 } catch (JSONException e) {
@@ -236,10 +251,5 @@ public class OrderActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
         }
-
-
-
-
-
     }
 }

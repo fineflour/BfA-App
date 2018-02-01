@@ -6,4 +6,6 @@
     <color name="colorDarkNavy">#003A63</color>
     <color name="colorGold">#DEB408</color>
     <color name="colorDarkGray">#555555</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
 </resources>
