@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Order Form</title>
+        
+        <link href="css/order.css" rel="stylesheet" type="text/css" />
+        <script type='text/javascript' src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+        <script type='text/javascript' src="js/jquery.validate.min.js"></script>
+        <script type='text/javascript' src="js/json2.js"></script>
+        <!--script src="http://hector-d-felixs-mac-mini.local:8081/target/target-script-min.js"></script--> 
+        <script type="text/javascript" charset="utf-8">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", deviceReady, false);
+            }
+            function deviceReady() {
+                // We must include order.js here in order to access the APIKey plugin
+                $.getScript("js/order.js");
+            }
+            
+            var orderIndex = 0;
+            
+            $(document).ready(
+              function() {
+                  // check for pending orders
+                  check_pending_orders();
+                  localStorage.setItem("language_"+orderIndex, "en");
+                  localStorage.setItem("state_"+orderIndex, "AL");
+                  localStorage.setItem("contact_"+orderIndex, 0);
+                  localStorage.setItem("interestedinbiblestudy_"+orderIndex, 0);
+                              
+                  $("input, select, textarea").change(function () {
+                      onChange($(this));
+                  });
+              }
+            );
+            
+            
+            function check_pending_orders() {
+                if(localStorage.getItem("orderIndex") == null)
+                    localStorage.setItem("orderIndex", 0);
+                else
+                    orderIndex = localStorage.getItem("orderIndex");
+                
+                if(orderIndex > 0) {
+                    show_pending_orders();
+                }
+            }
+            
+            // separate function because we're calling this inside order.js also
+            function show_pending_orders() {
+                // show pending orders
+                var numPending = localStorage.getItem("numPending");
+                if(numPending == 1)
+                    $(".pending_orders").html("<button onclick=\"window.location=pending_orders.html\">1 Pending Order</button>");
+                else if(numPending != null)
+                    $(".pending_orders").html("<button onclick=\"window.location=pending_orders.html\">" + numPending + " Pending Orders</button>");
+                $(".pending_orders").show();
+            }
+            
+            function onChange(element) {
+                var name = element.attr("name") + "_" + orderIndex;
+                localStorage.setItem(name, element.val());
+                if(element.is(":checkbox")) {
+                    localStorage.setItem(name, element.is(":checked") ? 1 : 0);
+                }
+            }
+            
+            function submitFromForm() {
+                $("input, textarea, select").blur();
+                submitForm();
+            }
+        </script>
+        <style>
+            #loading {
+                display: none;
+                color: green;
+            }
+            .pending_orders {
+                display: none;
+            }
+        </style>
+    </head>
+    
+    <body onload="onBodyLoad()">
+        <a href="pending_orders.html"><h1 class="pending_orders">0 Pending Orders</h1></a>
+        <h1>SHIPPING IS FREE. Please allow up to 4 weeks for delivery.</h1>
+        <h2>BfA does not sell or share your personal information with other organizations.</h2>
+        <form class="cmxform" id="form1" name="form1" method="post" onsubmit="event.preventDefault(); submitFromForm();">
+            <p>
+            <label for="firstname" class="field_label">First Name</label>
+            <input type="text" name="firstname" id="firstname" class="required" />
+            </p>
+            <p>
+            <label for="lastname" class="field_label">Last Name</label>
+            <input type="text" name="lastname" id="lastname" class="required" />
+            </p>
+            <p>
+            <label for="email" class="field_label">E-mail</label>
+            <input type="email" name="email" id="email" class="required email" />
+            </p>
+            <p>
+            <label for="phone" class="field_label">Phone</label>
+            <input type="tel" type="text" name="phone" id="phone" class="required"/>
+            </p>
+            <p>I would like my Bible in
+            <select name="language" id="language" class="language" class="required">
+                <option selected value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+            </p>
+            <p>Country: United States of America</p>
+            <!--<p>College:</p>-->
+            <p>
+            
+            <label class="field_label">Street Address</label>
+            <textarea type="text" name="address" id="address" cols="21" rows="2" class="required"></textarea>
+            
+            </p>
+            
+            <p>
+            <label class="field_label">City</label>
+            <input type="text" name="city" id="city" class="required" />
+            </p>
+            <p>
+            <label>State</label>
+            <select name="state" id="state" class="state required">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">Dist of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+            </p>
+            <p>
+            <label class="field_label">Zip Code</label>
+            <input type="number" name="zipcode" id="zipcode" class="required" />
+            </p>
+            <p>
+            <input type="checkbox" id="contact" name="contact" />
+            <span id="contact_label">I am interested in being contacted and receiving guidance in using the Recovery Version to better understand the Bible.</span>
+            </p>
+            <p>
+            <input type="checkbox" id="interestedinbiblestudy" name="interestedinbiblestudy" />
+            <span id="interestedinbiblestudy_label">Yes, I would like to know about Bible study groups in my area.</span>
+            </p>
+            <p>
+            <input type="submit" value="Submit Order"/>
+            <span id="loading">Loading...<img src="images/ajax-loader.gif"/></span>
+            </p>
+        </form>
+        <a href="pending_orders.html"><h1 class="pending_orders">0 Pending Orders</h1></a>
+        <p>Requires internet connection.</p>
+    </body>
+</html>

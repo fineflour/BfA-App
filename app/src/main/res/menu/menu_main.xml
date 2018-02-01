@@ -19,6 +19,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_blble_study"
+        android:orderInCategory="300"
+        android:title="@string/action_blble_study"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_donation"
         android:orderInCategory="300"
         android:title="@string/action_donation"

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>An Illustrated Guide</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <link rel="stylesheet" type="text/css" href="css/quickTree.css" />
+    <link rel="stylesheet" type="text/css" href="css/dots.css" />
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.touchwipe.1.1.1.js"></script>
+    <script type="text/javascript" src="js/jquery.cycle.all.js"></script>    
+</head>
+    <body onload="onBodyLoad()">
+<div id="imagegallery" style="border: 1px solid #666666; width: 100%; height: 100%; margin-bottom:10px;">
+
+	<img src="images/features1.png" alt="features 1" />
+	<img src="images/features2.png" alt="features 2" style="display: none" />
+	<img src="images/features3.png" alt="features 3" style="display: none" />
+	<img src="images/features4.png" alt="features 4" style="display: none" />
+	<img src="images/features5.png" alt="features 5" style="display: none" />
+
+</div>
+<center>
+    <img class="dot" src="images/white-dot.png" id="0"/>
+    <img class="dot" src="images/dark-dot.png" id="1"/>
+    <img class="dot" src="images/dark-dot.png" id="2"/>
+    <img class="dot" src="images/dark-dot.png" id="3"/>
+    <img class="dot" src="images/dark-dot.png" id="4"/>
+</center>
+
+<script type="text/javascript"><!--
+var i = 0;
+function moveDotForward() {
+    if(i < 4) {
+        $("img.dot").eq(i).attr("src", "images/dark-dot.png");
+        i++;
+        $("img.dot").eq(i).attr("src", "images/white-dot.png");
+    }
+}
+function moveDotBackward() {
+    if(0 < i) {
+        $("img.dot").eq(i).attr("src", "images/dark-dot.png");
+        i--;
+        $("img.dot").eq(i).attr("src", "images/white-dot.png");
+    }
+}
+$(document).ready(function() {
+	$("#imagegallery").cycle({
+		timeout: 0,
+		fx: 'scrollHorz',
+		nowrap: 1,
+		speed: 500,
+		next: '#next',
+		prev: '#prev' 
+	});
+ 
+	$("#imagegallery").touchwipe({
+ 		wipeLeft: function() {
+ 	 		$("#imagegallery").cycle("next");
+            moveDotForward();
+ 		},
+ 		wipeRight: function() {
+ 	 		$("#imagegallery").cycle("prev");
+             moveDotBackward();
+ 		}
+	});
+    
+                  $("img.dot").click(function() {
+                                  if($(this).attr("id") < i) {
+                                  $("#imagegallery").cycle("prev");
+                                  moveDotBackward();
+                                  }
+                                  else if($(this).attr("id") != 0) {
+                                  
+                                  $("#imagegallery").cycle("next");
+                                  moveDotForward();
+                                  }
+                                  });
+});
+// --></script>
+</body>
+</html>

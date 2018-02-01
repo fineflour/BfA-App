@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>BfA Bible Study</title>
+        <link href="css/iphone.css" rel="stylesheet"></link>
+        <script src="js/dojo.js" djConfig="isDebug:true, parseOnLoad:true"></script>
+        
+        <!-- stylesheet will go here -->
+        
+        <!-- dojo/javascript will go here -->
+        <script>
+            // Load the widget parser
+            dojo.require("dojox.mobile.parser");
+            // Load the base lib
+            dojo.require("dojox.mobile");
+            
+            dojo.require("dojox.mobile.ScrollableView");
+            
+        </script>
+    </head>
+    <body>
+        
+        <!-- application will go here -->
+        <!-- the view or "page"; select it as the "home" screen -->
+        <div id="home" dojoType="dojox.mobile.ScrollableView" selected="true">
+            
+            <h1 dojoType="dojox.mobile.Heading">BfA Bible Study</h1>
+            
+            <ul dojoType="dojox.mobile.RoundRectList">
+                
+                <li dojoType="dojox.mobile.ListItem" icon="images/home_icon_1_1.png" moveTo="topics" transition="slide">
+                    Choose a Bible Study Unit
+                </li>
+                
+                <li dojoType="dojox.mobile.ListItem" icon="images/home_icon_1_0.png" moveTo="search" transition="slide">
+                    Look up a verse
+                </li>
+                
+                <li dojoType="dojox.mobile.ListItem" icon="images/home_icon_1_2.png" moveTo="read_his_word" transition="slide">
+                    Bible Reading Scheduler
+                </li>
+            </ul>
+        </div>
+        <div id="topics" dojoType="dojox.mobile.View">
+            <h1 dojoType="dojox.mobile.Heading" back="BfA Bible Study" moveTo="home">Topical Directory</h1>
+        </div>
+        <div id="search" dojoType="dojox.mobile.View">
+            <h1 dojoType="dojox.mobile.Heading" back="BfA Bible Study" moveTo="home">Look up a verse</h1>
+        </div>
+        <div id="read_his_word" dojoType="dojox.mobile.View">
+            <h1 dojoType="dojox.mobile.Heading" back="BfA Bible Study" moveTo="home">Read His Word</h1>
+        </div>
+    </body>
+</html>

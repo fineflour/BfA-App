@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Sample Study Guide</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <link rel="stylesheet" type="text/css" href="css/quickTree.css" />
+    <link rel="stylesheet" type="text/css" href="css/dots.css" />
+    
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.touchwipe.1.1.1.js"></script>
+    <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+</head>
+    <body onload="onBodyLoad()">
+<div id="imagegallery" style="border: 1px solid #666666; width: 100%; height: 100%; margin-bottom:10px;">
+    <img src="images/sample_study_intro.png" alt="sample study intro" />
+	<img src="images/sample_study_1.png" alt="sample study 1" />
+	<img src="images/sample_study_2.png" alt="sample study 2" />
+	<img src="images/sample_study_3.png" alt="sample study 3" />
+	<img src="images/sample_study_4.png" alt="sample study 4" />
+	<img src="images/sample_study_5.png" alt="sample study 5" />
+	<img src="images/sample_study_6.png" alt="sample study 6" />
+	<img src="images/sample_study_7.png" alt="sample study 7" />
+	<img src="images/sample_study_8.png" alt="sample study 8" />
+	<img src="images/sample_study_conclusion.png" alt="sample study conclusion" />
+</div>
+        <center>
+            <img class="dot" src="images/white-dot.png" id="0"/>
+            <img class="dot" src="images/dark-dot.png" id="1"/>
+            <img class="dot" src="images/dark-dot.png" id="2"/>
+            <img class="dot" src="images/dark-dot.png" id="3"/>
+            <img class="dot" src="images/dark-dot.png" id="4"/>
+            <img class="dot" src="images/dark-dot.png" id="5"/>
+            <img class="dot" src="images/dark-dot.png" id="6"/>
+            <img class="dot" src="images/dark-dot.png" id="7"/>
+            <img class="dot" src="images/dark-dot.png" id="8"/>
+        </center>
+
+<script type="text/javascript"><!--
+    var i = 0;
+    function moveDotForward() {
+        if(i < 8) {
+            $("img.dot").eq(i).attr("src", "images/dark-dot.png");
+            i++;
+            $("img.dot").eq(i).attr("src", "images/white-dot.png");
+        }
+    }
+    function moveDotBackward() {
+        if(0 < i) {
+            $("img.dot").eq(i).attr("src", "images/dark-dot.png");
+            i--;
+            $("img.dot").eq(i).attr("src", "images/white-dot.png");
+        }
+    }
+$(document).ready(function() {
+	$('#imagegallery').cycle({
+		timeout: 0,
+		fx: 'scrollHorz',
+		nowrap: 1,
+		speed: 500,
+		next: '#next',
+		prev: '#prev' 
+	});
+ 
+	$("#imagegallery").touchwipe({
+ 		wipeLeft: function() {
+            $("#imagegallery").cycle("next");
+            moveDotForward();
+ 		},
+ 		wipeRight: function() {
+ 	 		$("#imagegallery").cycle("prev");
+            moveDotBackward();
+ 		}
+	});
+                  
+                  $("img.dot").click(function() {
+                                     if($(this).attr("id") < i) {
+                                     $("#imagegallery").cycle("prev");
+                                     moveDotBackward();
+                                     }
+                                     else if($(this).attr("id") != 0) {
+                                     
+                                     $("#imagegallery").cycle("next");
+                                     moveDotForward();
+                                     }
+                                     });
+});
+// --></script>
+</body>
+</html>

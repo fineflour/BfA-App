@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Support BfA</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+    <link href="css/support.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function onBodyLoad() {
+            document.addEventListener("deviceready", deviceReady, false);
+        }
+        function deviceReady() {
+            $.getScript("js/childBrowserInclude.js");
+        }
+        function launchURL(url) {
+            window.plugins.childBrowser.showWebPage(url);
+        }
+        </script>
+    
+</head>
+    <body onload="onBodyLoad()">
+<div class="content">
+  <div class="header"> Bibles for America depends on the support of friends like you to fulfill its mission of distributing the New Testament Recovery Version all across this country. You can support this endeavor by your prayer, participation, and financial giving. </div>
+  <div class="main">
+    <h1>Pray</h1>
+    <p>Prayer is the first and most important way to support this work of disseminating the New Testament Recovery Version and our free literature. The Lord needs the prayer that will give Him a way to reach the spiritually hungry with His Word, from the big cities to the small towns of America.</p>
+    <h1>Participate</h1>
+    <p>Everyone can participate in telling others about the free New Testament Recovery Version.</p>
+    <h1>Give</h1>
+    <p> Each and every gift you make benefits those who want to know God in a deeper way by reading and studying His Word. You can give to BfA: </p>
+    <div class="methods">
+    <div class="method">Online</div>
+    <div class="description">Go to <a href="#" onclick="launchURL('https://www.bfa.org/SupportBFA/'); return false;">BfA support page.</a></div>
+    <div class="method">By Phone</div>
+    <div class="description"> Call our office to give using a credit card:
+    <div class="contact_info">888.551.0102 ext. 314</div></div>
+    <div class="method">By Mail</div>
+    <div class="description"> Send your check or money order to:
+      <div class="contact_info">355 Goddard, Ste. 100<br/>
+      Irvine, CA 92618</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

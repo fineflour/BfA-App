@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no"/>
+        <title>Pending Orders</title>
+        
+        <link href="css/order.css" rel="stylesheet" type="text/css" />
+        <script type='text/javascript' src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+        <script type='text/javascript' src="js/json2.js"></script>
+        <!--script src="http://hector-d-felixs-mac-mini.local:8081/target/target-script-min.js"></script--> 
+        <script type="text/javascript" charset="utf-8">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", deviceReady, false);
+            }
+            function deviceReady() {
+                // We must include order.js here in order to access the APIKey plugin
+                $.getScript("js/pending_order.js");
+            }
+            
+            $(document).ready(function() {
+                  // check for pending orders
+                  show_pending_orders();
+            });
+            var num_pending_orders = 0;
+            function show_pending_orders() {
+                var totalOrders = localStorage.getItem("orderIndex");
+                for(var i = 0; i < totalOrders; i++) {
+                    if(localStorage.getItem("firstname_"+i) != null)
+                    {
+                        num_pending_orders++;
+                        add_order(i);
+                    }
+                }
+            }
+            
+            var deleteIndex = -1;
+            function removeOrder(index) {
+                deleteIndex = index;
+                navigator.notification.confirm("Are you sure you want to delete this pending order?", confirmCallback, "Pending Orders", "Yes,Cancel");
+            }
+            
+            function confirmCallback(button) {
+                if(button == 1) {
+                    deleteOrder(deleteIndex);
+                    $("#" + deleteIndex).fadeOut(1000);
+                    deleteIndex = -1;
+                }
+            }
+            
+            function add_order(x) {
+                var html = "<div id='" + x + "'>" + localStorage.getItem("firstname_"+x);
+                html += " " + localStorage.getItem("lastname_"+x);
+                html += ", submitted at " + localStorage.getItem("time_"+x);
+                html += ".";
+                //html += "<span id=\"address_form_" + x + "\" style=\"display:none\"></span>";
+                html += "<button id=\"submit_button_" + x + "\" onclick=\"submit_pending_order(" + x + ");\">Submit</button>";
+                html += "<button id=\"delete_button_" + x + "\" onclick=\"removeOrder(" + x + ");\">Delete</button>";
+                html += "<span id=\"loading" + x + "\" class=\"loading\"><br>Loading...<img src=\"images/ajax-loader.gif\"/></span>";
+                html += "<hr></div>";
+                $("body").append(html);
+            }
+        </script>
+        <style>
+            .loading {
+                display: none;
+                color: green;
+            }
+        </style>
+    </head>
+    
+    <body onload="onBodyLoad()">
+    </body>
+</html>

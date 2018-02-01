@@ -3,6 +3,7 @@
     <string name="action_bfa">BfA Website</string>
     <string name="action_order">Order Bible</string>
     <string name="action_download">Download Books</string>
+    <string name="action_blble_study">Bible Study</string>
     <string name="action_donation">Donation</string>
     <string name="action_signout">Sign out</string>
 

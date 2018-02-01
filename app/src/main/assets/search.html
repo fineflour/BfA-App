@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Look up a verse</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+        <style type="text/css">
+            <!--
+            body {
+                margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+                padding: 0;
+                text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+                color: #000000;
+                background: #000;
+                font-family:Arial, Helvetica, sans-serif;
+                
+            }
+            
+            #container {
+                margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+                text-align: left; /* this overrides the text-align: center on the body element. */
+                /*padding: 15px;*/
+            }
+            
+            #scriptureSearch {
+                padding:20px;
+                padding-top:40px;
+                padding-bottom:40px;
+                background-color:#2F3030;
+                border-bottom:2px solid #202020;
+            }
+            
+            #keywordSearch {
+                padding:20px;
+                padding-top:40px;
+                padding-bottom:40px;
+                background-color:#414242;
+            }
+            
+            #container h1 {
+                
+                font-size:16pt;
+            }
+            
+            .title {
+                font-weight: bold;
+            }
+            
+            .searchField {
+                font-size:18pt;
+            }
+            
+            .prettybutton{
+                display: inline-block;
+                width:205pt;
+                color: #000;
+                font-size:16pt;
+                font-weight: bold;
+                margin-bottom: 0px;
+                margin-top: 7px;
+                margin-right: 4px;
+                margin-left: 0;
+                padding: 0px 10px;
+            }
+            
+            .examples {
+                color:#9A9D9D;
+                margin-bottom:10px;
+                margin-top:10px;
+                text-align:left;
+            }
+            
+            .example{
+                margin-left: 0px;
+                margin-top: 0px;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            
+            .example.title{
+                font-weight: bold;
+            }
+            
+            #ntOnly {
+                background:#000;
+                padding:15px 0px 20px 20px;
+                color:#928284;
+                font-size:10pt;
+            }
+            -->
+            </style>
+        
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function onBodyLoad() {
+                document.addEventListener("deviceready", deviceReady, false);
+            }
+            function deviceReady() {
+                $.getScript("js/childBrowserInclude.js");
+            }
+            function callSearch(x) {
+                var url;
+                if(x == 0) {
+                    url = "http://online.recoveryversion.org/GetScripture.asp?vinfo=";
+                    url += encodeURI(document.getElementById("Text1").value);
+                } else {
+                    url = "http://online.recoveryversion.org/search.asp?all_q=";
+                    url += encodeURI(document.getElementById("Text2").value);
+                    url += "&one_q=_&no_q=_&phr_q=_&ord_q=_&near_q=_&case=off&stem=off&cont=all&rb=40&re=66&ps=10&st=v";
+                }
+                window.plugins.childBrowser.showWebPage(url);
+            }
+        </script>
+    </head>
+    
+    <body onload="onBodyLoad()">
+        
+        <div id="container">
+            <div id="scriptureSearch">
+                <form name="searchScriptureform" method="post" onsubmit="callSearch(0)" action="" id="Form1">
+                    <input type="search" class="searchField"  name="scriptureString" size="18" id="Text1" style="vertical-align:middle" placeholder="Scripture Reference"> 
+                        <div class="examples">"2 Corinthians 1:1" OR "2 Cor 1:1", "Matthew 1" OR "Matt 1".</div>
+                        <!--<input class="prettybutton" 
+                         type="submit" value="Search New Testament" alt="Get Scripture">-->
+                        </form>
+            </div>
+            <div id="keywordSearch">
+                <form name="searchform" method="post" onsubmit="callSearch(1)" action="" id="Form2">
+                    <input type="search" class="searchField" name="Searchallwords" size="18" id="Text2" style="vertical-align:middle" placeholder="Keywords"> 
+                        <div class="examples">"Jesus", "Lord Jesus Christ", "Baptiz*" (baptize, baptized, baptizing...).</div>
+                        <!-- <input class="prettybutton" 
+                         type="submit" value="Search Keywords" alt="Get Scripture">-->
+                        </form>
+            </div>
+            <div id="ntOnly">
+                *Keyword search is New Testament only.
+            </div>
+            <!--
+             <h1>Search Examples:</h1>
+             <div class="example">
+             <div class="title">One Verse</div>
+             <div class="description">2 Corinthians 1:1 or 2 Cor. 1:1</div>
+             </div>
+             <div class="example">
+             <div class="title">One Chapter</div>
+             <div class="description">2 Corinthians 1 or 2 Cor. 1</div>
+             </div>
+             <div class="example">
+             <div class="title">One Book</div>
+             <div class="description">2 Corinthians or 2 Cor.</div>
+             </div>
+             <div class="example">
+             <div class="title">Multiple Verses</div>
+             <div class="description">Matthew 1:1 - Matthew 1:14 or Matthew 1:1 - 1:14 or Matthew 1:1 - 14</div>
+             </div>
+             <div class="example">
+             <div class="title">Multiple Chapter</div>
+             <div class="description">Matthew 1 - 2</div>
+             </div>
+             -->
+            <!-- end #container --></div>
+    </body>
+</html>
+
