@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Bibles for America</string>
+
     <string name="action_bfa">BfA Website</string>
     <string name="action_order">Order Bible</string>
     <string name="action_download">Download Books</string>

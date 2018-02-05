@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,18 +22,12 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-
 import static android.content.ContentValues.TAG;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 
-public class OrderActivity extends AppCompatActivity  {
+public class OrderActivity extends BaseActivity  {
     private String OPS_URL = "https://ops.bfa.org/api/v1/orders.json?api_key=AE791F6F9AE5D8E5";
     private Button btnPlaceOrder;
     private EditText txtFirstName;
@@ -49,7 +40,6 @@ public class OrderActivity extends AppCompatActivity  {
     private CheckBox chkBlogSubscribe;
     private Spinner spnState;
     private TextView txtMessage;
-    private Toolbar toolbar;
     private TextView txtOrderResult;
 
     String firstName = "";
@@ -63,18 +53,14 @@ public class OrderActivity extends AppCompatActivity  {
     String ipAddress = "";
     String stateName = "";
     String productId = "1";
-    String bfaWebsite = "http://www.bfa.org";
-    String bfaDonation = "https://contributions.biblesforamerica.org/support-bfa";
     String Message = "";
     String blogSubscription = "true";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        setTitle(R.string.app_name);
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface
                     .getNetworkInterfaces(); en.hasMoreElements();) {
@@ -90,19 +76,6 @@ public class OrderActivity extends AppCompatActivity  {
         } catch (SocketException ex) {
             Log.e(TAG, "Exception in Get IP Address: " + ex.toString());
         }
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-       /* fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
 
         txtFirstName = (EditText)findViewById(R.id.txtFirstName);
         txtLastName = (EditText)findViewById(R.id.txtLastName);
@@ -136,45 +109,6 @@ public class OrderActivity extends AppCompatActivity  {
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_order:
-                // User chose the "Settings" item, show the app settings UI...
-                break;
-
-            case R.id.action_download:
-
-                break;
-
-            case R.id.action_donation:
-
-                Intent browserBfADonation = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaWebsite));
-                startActivity(browserBfADonation);
-                break;
-
-            case R.id.action_bfa:
-                Intent browserBfAWebsite = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaDonation));
-                startActivity(browserBfAWebsite);
-                break;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-        return true;
     }
 
     private class AddNewOrder extends AsyncTask<String, Void, Void> {
