@@ -14,9 +14,6 @@ public class BaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
 
-    String bfaWebsite = "http://www.bfa.org";
-    String bfaDonation = "https://contributions.biblesforamerica.org/support-bfa";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +38,9 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent newActivity = new Intent(BaseActivity.this, WebviewActivity.class);
+
         switch (item.getItemId()) {
-
-
             case R.id.action_order:
                 // User chose the "Settings" item, show the app settings UI...
                 Intent intentOrder = new Intent(this, OrderActivity.class);
@@ -51,25 +48,27 @@ public class BaseActivity extends AppCompatActivity {
                 break;
 
             case R.id.action_download:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+                newActivity.putExtra("title", "Download Books");
+                newActivity.putExtra("url", "http://biblesforamerica.org/books" );
+                startActivity(newActivity);
                 break;
 
             case R.id.action_blble_study:
-                Intent intentStudy = new Intent(this, WebviewActivity.class);
-                startActivity(intentStudy);
+                newActivity.putExtra("title", "Bible Study");
+                newActivity.putExtra("url", "file:///android_asset/html/index.html");
+                startActivity(newActivity);
                 break;
 
             case R.id.action_donation:
-                Intent browserBfADonation = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaWebsite));
-                startActivity(browserBfADonation);
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+                newActivity.putExtra("title", "Give to BfA");
+                newActivity.putExtra("url", "https://contributions.biblesforamerica.org/support-bfa");
+                startActivity(newActivity);
                 break;
 
             case R.id.action_bfa:
-                Intent browserBfAWebsite = new Intent(Intent.ACTION_VIEW, Uri.parse(bfaDonation));
-                startActivity(browserBfAWebsite);
+                newActivity.putExtra("title", "Bibles for America");
+                newActivity.putExtra("url", "http://www.bfa.org");
+                startActivity(newActivity);
                 break;
 
             case R.id.action_signout:
