@@ -1,36 +1,13 @@
 package org.bfa.bfa_app;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Spinner;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
-import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,15 +18,16 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 public class MainActivity extends BaseActivity implements
         View.OnClickListener {
+    //Toolbar toolbar;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private GoogleSignInClient mGoogleSignInClient;
+    public GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
+    private Intent signInIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +38,8 @@ public class MainActivity extends BaseActivity implements
 
         // Button listeners
         findViewById(R.id.btnSignin).setOnClickListener(this);
+        findViewById(R.id.btnSignout).setOnClickListener(this);
+        this.toolbar.setVisibility(View.GONE);
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -115,7 +95,7 @@ public class MainActivity extends BaseActivity implements
 
 
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -130,6 +110,7 @@ public class MainActivity extends BaseActivity implements
                     }
                 });
     }
+
 
     private void revokeAccess() {
         mGoogleSignInClient.revokeAccess()
@@ -147,14 +128,15 @@ public class MainActivity extends BaseActivity implements
 
         if (account != null) {
             mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
-
             findViewById(R.id.btnSignin).setVisibility(View.GONE);
+            findViewById(R.id.btnSignout).setVisibility(View.VISIBLE);
+            this.toolbar.setVisibility(View.VISIBLE);
 
         } else {
-            mStatusTextView.setText(R.string.action_signout);
-
+            mStatusTextView.setText("");
             findViewById(R.id.btnSignin).setVisibility(View.VISIBLE);
             findViewById(R.id.btnSignout).setVisibility(View.GONE);
+            this.toolbar.setVisibility(View.GONE);
         }
     }
 

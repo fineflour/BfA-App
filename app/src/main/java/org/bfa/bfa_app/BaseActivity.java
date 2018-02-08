@@ -11,7 +11,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 public class BaseActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+    public Toolbar toolbar;
+
 
 
     @Override
@@ -25,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
         super.setContentView(fullView);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         setTitle("Activity Title");
     }
@@ -69,11 +70,6 @@ public class BaseActivity extends AppCompatActivity {
                 newActivity.putExtra("title", "Bibles for America");
                 newActivity.putExtra("url", "http://www.bfa.org");
                 startActivity(newActivity);
-                break;
-
-            case R.id.action_signout:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
                 break;
 
             default:
