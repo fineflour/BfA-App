@@ -32,6 +32,8 @@ public class MainActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar.setLogo(R.drawable.ic_saved_order_space);
         setTitle(R.string.app_name);
 
         mStatusTextView = (TextView) findViewById(R.id.txtStatus);

@@ -1,0 +1,71 @@
+body {
+background-color: #F3F3F3;
+}
+h3 {
+  font-style: italic;
+  color:grey;
+  margin-bottom: 3px;
+  font-weight: normal;
+}
+
+.sub-topic {
+  font-weight: bold;
+}
+
+
+.hr{
+    background-color: #c8c7cc;
+    height: 1px;
+    width: 100%;
+    margin-top: 22px;
+}
+
+.tab-green {
+  background-color: #9abc32 !important;
+  color: white !important;
+}
+
+.tab-grey {
+  background-color: #c7cccf !important;
+  color: white !important;
+}
+
+.italic {
+  font-style: italic;
+}
+
+/* Icon colors */
+.red {
+  color: #d53f40;
+}
+
+
+.light-blue {
+  color: #4f9acb;
+}
+
+.dark-blue {
+  color: #003a62;
+}
+
+
+/* topics headings */
+
+.topic {
+  font-weight: bolder;
+}
+
+.list-item {
+  color: #2679b5;
+  font-weight: bolder
+}
+
+.popup-title {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 14px;
+}

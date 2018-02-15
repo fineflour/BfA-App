@@ -1,104 +1,105 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html class='ios device-pixel-ratio-1 device-desktop support-position-sticky' lang='en'>
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover' name='viewport'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='default' name='apple-mobile-web-app-status-bar-style'>
+    <meta content='#2196f3' name='theme-color'>
+    <meta content='default-src * &#39;self&#39; &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; data: gap:' http-equiv='Content-Security-Policy'>
+    <title>BfA Study App</title>
+    <!-- %link{:href => "img/f7-icon-square.png", :rel => "apple-touch-icon"}/ -->
+    <!-- %link{:href => "img/f7-icon.png", :rel => "icon"}/ -->
+    <link rel="stylesheet" media="all" href="../style/bootstrap.min.css" />
+    <link rel="stylesheet" media="all" href="../style/bootstrap.css" />
+    <link rel="stylesheet" media="all" href="../style/biblelink.css" />
+    <link rel="stylesheet" media="all" href="../style/styless.css" />
+    <link rel="stylesheet" media="all" href="../style/custom.css" />
+    <link rel="stylesheet" media="all" href="../style/load_fonts.css">
+    <link rel="stylesheet" media="all" href="../style/font-awesome.min.css">
 
-<html>
-  <head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-    <title>BfA Bible Study</title>
-		<link rel="stylesheet" type="text/css" href="css/quickTree.css" />
-    <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        
-        function onBodyLoad() {
-            document.addEventListener("deviceready", deviceReady, false);
-        }
-        
-        function deviceReady() {
-            $.getScript("js/childBrowserInclude.js");
-            if(device.platform == "iPhone" || device.platform == "iPad" || device.platform == "iPhone Simulator")
-            {
-                $.getScript("js/iPhone/ComposeEmail.js");
-            }
-        }
-        
-        function readHisWord() {
-            var url = "http://www.ReadHisWord.com/m/";
-            window.plugins.childBrowser.showWebPage(url);
-        }
-        
-        function facebook() {
-            /*var url = "http://graph.facebook.com/oauth/authorize?scope=publish_stream&" +
-            "client_id=228902140480219&" +
-            "redirect_uri=http://www.facebook.com/connect/login_success.html&" +
-            "display=touch";
-            window.plugins.childBrowser.onLocationChange = function(location) {
-                if(location.substr(0, 50) == "http://www.facebook.com/connect/login_success.html") {*/
-                    var url = "http://m.facebook.com/dialog/feed?" + 
-                     "app_id=228902140480219&" +
-                     "display=touch&" +
-                     "link=http://www.bfa.org&" +
-                     "picture=http://www.bfa.org/images/popup/bible.png&" +
-                     "name=Free%20Study%20Bible&" +
-                     "description=Order%20a%20free%20study%20Bible%20(the%20New%20Testament%20Recovery%20Version)%20and%20free%20Christian%20books%20from%20Bibles%20for%20America%2C%20a%20nonprofit%20organization.&" +
-                     "redirect_uri=http://www.facebook.com/profile.php&" + 
-                     "properties=" + 
-                      encodeURI("{\"Join \":{\"text\":\"BFA on Facebook\",\"href\":\"http://www.facebook.com/biblesforamerica\"}}");
-                    //window.plugins.childBrowser.onLocationChange = function(location) {};
-                    window.plugins.childBrowser.showWebPage(url);
-           /*     }
-            };
-            window.plugins.childBrowser.showWebPage(url);*/
-        }
-        
-        function moreWays() {
-            var options = {};
-            options.subject = "Free Study Bible";
-            options.body = "Bibles for America is giving away free copies of the New " +
-            "Testament Recovery Version (an excellent study Bible) and " +
-            "free Christian books. I thought you might be interested. " +
-            "Order online at www.bfa.org.";
-            if(device.platform == "iPhone" || device.platform == "iPad" || device.platform == "iPhone Simulator")
-            {
-                window.plugins.composeEmail.compose(options);
-            }
-            else if(device.platform == "Android")
-            {
-            	$.getScript("js/android/MoreWaysToShare.js", function() {
-                            window.plugins.moreWaysToShare.share(options.subject, options.body);
-                            });
-            }
-        }
-    </script>
-    <style>
-        .icon {
-            padding-right:10px;
-            vertical-align:middle;
-        }
-    </style>
-  </head>
-  <body class="content" onload="onBodyLoad()">
+</head>
+<body>
+<div id='app'>
+    <div class='statusbar'></div>
+    <div class='view view-main'>
+        <div class='page' data-page='pdfviewer'>
+            <div class='page-content'>
+                <div class='block-title topic'>STUDY</div>
+                <div class='list'>
+                    <ul>
+                        <li>
+                            <a class="close-panel item-link ripple-color-red" href="study/index.html">
+                             <div class='item-content list-item'>
+                                <div class='item-inner'>
+                                    <div class='item-title'>
+                                        <i class='fa fa-book dark-blue'></i>
+                                        <i class="icon-chevron-right"></i>
+                                        &nbsp;
+                                        Recovery Version Bible Study Topics
 
-     <div id="study_unit">
-     <img alt="Study unit" longdesc="Study unit" src="images/bible.png" style="position: absolute; right:3%; top:7px"/>  
-	    <h1 style="margin-top:22px">STUDY</h1>
-	    <a href="bible_study_menu.html" class="link_head"><img alt="Study unit" longdesc="Study unit" src="images/home_icon_1_1.png" class="icon" height="40" width="40" />Choose a Bible Study Unit</a>
-		<a href="search.html" class="link_head"><img alt="Look up a verse" longdesc="Look up a verse" src="images/home_icon_1_0.png" class="icon" height="40" width="40" />Look up a verse</a>
-	    <a href="#" onclick="readHisWord(); return false;" class="link_head"><img alt="Bible Reading Scheduler" longdesc="Bible Reading Scheduler" src="images/home_icon_1_2.png" class="icon" height="40" width="40" />Bible Reading Scheduler</a>
-     </div>
-    
-    <div id="spread_unit">  
-	    <h1>SPREAD THE WORD</h1>
-	    <a href="#" class="link_head" onclick="facebook(); return false;"><img alt="Facebook" longdesc="Facebook" src="images/home_icon_2_0.png" class="icon" height="40" width="40" />Facebook</a>
-	    <a href="#" class="link_head" onclick="moreWays(); return false;"><img alt="E-mail" longdesc="E-mail" src="images/home_icon_2_2.png" class="icon" height="40" width="40" />E-mail</a>
-	    <a href="order.html" class="link_head"><img alt="Order a Free New Testament" longdesc="Order a Free New Testament" src="images/home_icon_2_3.png" class="icon" height="40" width="40" />Order a Free New Testament</a>
-	</div>
-    
-    <div id="about_unit">  
-	    <h1>ABOUT</h1>
-	    <a href="about_bfa_menu.html" class="link_head"><img alt="Bibles for America" longdesc="Bibles for America" src="images/home_icon_0_0.png" class="icon" height="40" width="40" />Bibles for America</a>
-	    <a href="about_rcv_menu.html" class="link_head"><img alt="The Revovery Version" longdesc="The Revovery Version" src="images/home_icon_0_1.png" class="icon" height="40" width="40" />The Revovery Version</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </a></li>
+                        <li>
+                            <a class="close-panel item-link ripple-color-red" href="study/companion_to_becl"><div class='item-content list-item'>
+                                <div class='item-inner'>
+                                    <div class='item-title'>
+                                        <i class='fa fa-pencil-square-o dark-blue'></i>
+                                        <i class="icon-chevron-right"></i>
+                                        &nbsp;
+                                        Focus Questions for
+                                        <span class='italic'>Basic Elements of the Christian Life</span>
+                                    </div>
+                                </div>
+                            </div>
+                            </a></li>
+                        <li>
+                            <a class="close-panel item-link ripple-color-red" href="study/download_becl_books"><div class='item-content list-item'>
+                                <div class='item-inner'>
+                                    <div class='item-title'>
+                                        <i class='fa fa-download dark-blue'></i>
+                                        <i class="icon-chevron-right"></i>
+                                        &nbsp;
+                                        Download <span class='italic'>Basic Elements of the Christian Life</span>
+                                    </div>
+                                </div>
+                            </div>
+                            </a></li>
+                    </ul>
+                </div>
+                <div class='block-title' style='font-weight:bolder;'>SPREAD THE WORD</div>
+                <div class='list'>
+                    <ul>
+                        <li>
+                            <a class="link external close-panel item-link ripple-color-red" target="blank" href="http://biblesforamerica.org/free-bible/"><div class='item-content list-item'>
+                                <div class='item-inner'>
+                                    <div class='item-title'>
+                                        <i class='fa fa-send dark-blue'></i>
+                                        <i class="icon-chevron-right"></i>
+                                        &nbsp;
+                                        Order a Free Bible
+                                        <i class='fa fa-external-link'></i>
+                                    </div>
+                                </div>
+                            </div>
+                            </a></li>
+                    </ul>
+                </div>
+                <div class='list'>
+                    <div class='block footer-text'>
+                        Bibles for America is a nonprofit organization.
+                        <br>
+                        © 2018 Bibles for America. All rights reserved.
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </body>
+</div>
+
+</body>
 </html>

@@ -1,0 +1,303 @@
+.ios body {
+    font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #000;
+    line-height: 1.4;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    width: 100%;
+    background: #F2F2F2;
+    overflow: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.ios .block-title {
+    text-transform: uppercase;
+    color: #6d6d72;
+    margin: 35px 15px 10px;
+}
+
+.topic {
+    font-weight: bolder;
+}
+
+.block-title {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.ios .block-title+.list, .ios .block-title+.block, .ios .block-title+.card, .ios .block-title+.timeline, .ios .block-title+.block-header {
+    margin-top: 10px;
+}
+
+.ios .list {
+    margin: 35px 0;
+    font-size: 17px;
+}
+.list {
+    position: relative;
+    z-index: 1;
+}
+* {
+    /* -webkit-tap-highlight-color: transparent; */
+    -webkit-touch-callout: none;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+
+.ios .list .item-inner {
+    min-height: 44px;
+    padding-right: 15px;
+}
+
+.ios .list .item-content {
+    min-height: 44px;
+    padding-left: 15px;
+}
+
+.list .item-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.list-item {
+    color: #2679b5;
+    font-weight: bolder;
+}
+
+
+a, input, textarea, select {
+    outline: 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.ios .list ul {
+    background: #fff;
+}
+
+.list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+user agent stylesheet
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+.ios .list .item-inner:after {
+    content: '';
+    position: absolute;
+    background-color: #c8c7cc;
+    display: block;
+    z-index: 15;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+}
+
+.ios .list ul:before {
+    content: '';
+    position: absolute;
+    background-color: #c8c7cc;
+    display: block;
+    z-index: 15;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+}
+
+.dark-blue {
+    color: #003a62;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+i, cite, em, var, address, dfn {
+    font-style: italic;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+.list .item-inner {
+    position: relative;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-width: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:click {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.accordion-toggle {
+    color: #000
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 8px;
+    height: 13px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url(../images/arrow-right.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+.icon-chevron-right {
+     float: right;
+     margin-top: 4px;
+     margin-right: -6px;
+     opacity: 100;
+     position: absolute;
+     right: 20px;
+ }
+
+ .panel-heading .accordion-toggle:after {
+     /* symbol for "opening" panels */
+     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+     float: right;        /* adjust as needed */
+     color: grey;         /* adjust as needed */
+ }
+ .panel-heading .accordion-toggle.collapsed:after {
+     /* symbol for "collapsed" panels */
+     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+ }
+h3 {
+    font-style: italic;
+    color: grey;
+    margin-bottom: 3px;
+    font-weight: normal;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.accordion-item .list, .accordion-item .block {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.ios .block {
+    margin: 35px 0;
+    padding: 0 15px;
+    color: #6d6d72;
+}
+
+.block {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+.external {
+    color: gray !important;
+}
+
+.panel-heading {
+    background: #fff;
+}

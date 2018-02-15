@@ -1,0 +1,122 @@
+﻿body {
+	padding:0;
+	margin:0;
+}
+
+#topics {
+	width:100%;
+	font-family:Arial;
+	color:#6b6600;
+	font-size:12pt;
+	overflow:hidden;
+}
+.topic {
+	position:relative;
+	float:left;
+	padding-top:15px;
+	padding-bottom:15px;
+	width:100%;
+	padding-left:0;
+	padding-right:0;
+	margin:0;
+	
+}
+
+.topic.last{
+	border-bottom:1px solid #DBDEDE;
+}
+.topic.l1 {
+	background-color:#FFFBEE;
+}
+.topic.l2 {
+	
+}
+
+.topic input {
+	float:left;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+.topic.l2 input {
+	margin-left:20px;
+}
+
+.topic h1 {
+	font-family:Arial;
+	padding-left:5px;
+	margin:0;
+	color:#000;
+}
+
+.topic.no_check h1 {
+	padding-left:15px
+}
+
+.l1 h1 {
+	font-size:16pt;
+	font-weight:bold;
+}
+.l2 h1 {
+	font-size:12pt;
+	font-weight:100;
+	font-style:italic;
+}
+.content {
+	float:left;
+}
+.verses {
+	float:left;
+	clear:left;
+	margin-left:50px;
+}
+.verse {
+	display:block;
+	float:left;
+	padding:2px;
+	margin-right:10px;
+	line-height:30px;/*white-space:nowrap;*/
+}
+.verses a {
+	color:#6b6600;
+	text-decoration:none;
+}
+.footnotes {
+	color:#6b6600;
+	vertical-align:super;
+	font-size:10pt;
+	text-decoration:none;
+}
+.highlighted {
+	background-color: #EDD8AD;
+}
+
+
+/* common settings checkbox and radiobutton */
+input[type="checkbox"]
+{
+	-khtml-appearance: none;
+	background: url('../images/checkbox.png') no-repeat;
+	width: 20px;
+	height: 20px;
+}
+input[type="checkbox"]:hover
+{
+	background: url('../images/checkbox.png') no-repeat;
+}
+
+input[type="checkbox"]:checked
+{
+	background: url('../images/checkbox-checked.png') no-repeat;
+}
+
+input[type="checkbox"]:checked:hover
+{
+	background: url('../images/checkbox-checked.png') no-repeat;;
+}
+
+/* disabled settings for checkbox and radiobutton */
+input[type="checkbox"]:disabled
+{
+	opacity: .3;
+}
