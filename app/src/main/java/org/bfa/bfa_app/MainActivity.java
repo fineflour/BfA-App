@@ -1,11 +1,13 @@
 package org.bfa.bfa_app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements
     public GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
     private Intent signInIntent;
+    private String RubyAppUri = "https://biblestudy.herokuapp.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,10 +132,18 @@ public class MainActivity extends BaseActivity implements
     private void updateUI(@Nullable GoogleSignInAccount account) {
 
         if (account != null) {
-            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
-            findViewById(R.id.btnSignin).setVisibility(View.GONE);
-            findViewById(R.id.btnSignout).setVisibility(View.VISIBLE);
-            this.toolbar.setVisibility(View.VISIBLE);
+            //mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
+            //findViewById(R.id.btnSignin).setVisibility(View.GONE);
+            //findViewById(R.id.btnSignout).setVisibility(View.VISIBLE);
+            //this.toolbar.setVisibility(View.VISIBLE);
+            Intent webActivity = new Intent(MainActivity.this, WebviewActivity.class);
+            //webActivity.setDataAndType(Uri.parse(RubyAppUri), "application/pdf");
+            webActivity.putExtra("title", "Bible Study");
+            webActivity.putExtra("url", RubyAppUri);
+            //newActivity.putExtra("url", "file:///android_asset/html/index.html");
+            startActivity(webActivity);
+
+
 
         } else {
             mStatusTextView.setText("");
