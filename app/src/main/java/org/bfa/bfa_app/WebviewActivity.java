@@ -4,6 +4,8 @@ import android.app.DownloadManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ import android.Manifest;
 import com.basecamp.turbolinks.TurbolinksAdapter;
 import com.basecamp.turbolinks.TurbolinksSession;
 import com.basecamp.turbolinks.TurbolinksView;
+
+import java.util.List;
 
 
 public class WebviewActivity extends AppCompatActivity implements TurbolinksAdapter {
@@ -57,34 +61,39 @@ private  TurbolinksView turbolinksView;
             public void onDownloadStart(String download_url, String userAgent,
                                         String contentDisposition, String mimetype,
                                         long contentLength) {
-
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(download_url));
+
                 String fileName = URLUtil.guessFileName(download_url, contentDisposition, mimetype);
                 request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //Notify client once download is completed!
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+                //Notify client once download is completed!
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+                request.setDescription("Downloading...")
+                        .setTitle(fileName);
 
                 DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 dm.enqueue(request);
+
                 Toast.makeText(getApplicationContext(), "Downloading File", //To notify the Client that the file is being downloaded
                 Toast.LENGTH_LONG).show();
+
+
+                Intent webActivity = new Intent(WebviewActivity.this, PdfviewActivity.class);
+                webActivity.putExtra("title", "Bible Study");
+                webActivity.putExtra("url", download_url);
+                webActivity.putExtra("filename", fileName);
+                startActivity(webActivity);
             }
         });
 
         WebSettings settings = TurbolinksSession.getDefault(this).getWebView().getSettings();
-        settings.setDomStorageEnabled(false);
-        settings.setAllowFileAccess(false);
-
-        //top_menu_view.setWebViewClient(new WebViewClient());
-        //top_menu_view.getSettings().setJavaScriptEnabled(true);
-        //top_menu_view.loadUrl("file:///android_asset/html/top_menu.html");
-
-        //getSupportActionBar().setTitle("Toolbar example");
-        //toolbar.setSubtitle("Android-er.blogspot.com");
-        //toolbar.setLogo(R.drawable.ic_saved_order_space);
+        settings.setDomStorageEnabled(true);
+        settings.setAllowFileAccess(true);
         setTitle(strTitle);
 
     }
+
     private static final int REQUEST_WRITE_STORAGE = 112;
     private void requestAppPermissions() {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {

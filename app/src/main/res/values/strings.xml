@@ -1,5 +1,5 @@
 <resources>
-<!-- Signin Activity -->
+    <!-- Signin Activity -->
     <string name="title_text">Google Sign-In\nQuickstart</string>
 
     <!-- Sign-in status messages -->
@@ -50,7 +50,7 @@
     <string name="msg_contacts_failed">Get contacts failed.</string>
 
 
-<!-- End of Signin Activity -->
+    <!-- End of Signin Activity -->
 
     <string name="app_name">Bibles for America</string>
     <string name="strOrderTitle">Place Your Free Order</string>
@@ -75,22 +75,20 @@
 
 
     <!-- Popup Menu Title -->
-    <string  name="action_order">Order Bible</string>
-    <string  name="action_signout">Sign out</string>
-    <string  name="action_signin">Sign in</string>
-    <string  name="action_bfa">BfA Website</string>
-    <string  name="action_download">Download Books</string >
-    <string  name="action_blble_study">Bible Study</string >
-    <string  name="action_donation">Give to BfA</string >
-
+    <string name="action_order">Order Bible</string>
+    <string name="action_signout">Sign out</string>
+    <string name="action_signin">Sign in</string>
+    <string name="action_bfa">BfA Website</string>
+    <string name="action_download">Download Books</string>
+    <string name="action_blble_study">Bible Study</string>
+    <string name="action_donation">Give to BfA</string>
 
 
     <!-- Popup menu url -->
-    <string  name="url_bfa">http://www.bfa.org"</string>
-    <string  name="url_download">"http://biblesforamerica.org/books/</string >
-    <string  name="url_blble_study">file:///android_asset/html/index.html</string >
-    <string  name="url_donation">https://contributions.biblesforamerica.org/support-bfa</string >
-
+    <string name="url_bfa">http://www.bfa.org"</string>
+    <string name="url_download">"http://biblesforamerica.org/books/</string>
+    <string name="url_blble_study">file:///android_asset/html/index.html</string>
+    <string name="url_donation">https://contributions.biblesforamerica.org/support-bfa</string>
 
 
     <!--string name="strMenuLocation">Location</string>
