@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
@@ -103,6 +104,20 @@ public class WebviewActivity extends AppCompatActivity implements TurbolinksAdap
         settings.setAllowFileAccess(true);
         setTitle(strTitle);
 
+    }
+
+    @Override
+
+    protected void onRestart() {
+
+        super.onRestart();
+
+        TurbolinksSession.getDefault(this)
+                .activity(this)
+                .adapter(this)
+                .restoreWithCachedSnapshot(true)
+                .view(turbolinksView)
+                .visit(strUrl);
     }
 
     @Override

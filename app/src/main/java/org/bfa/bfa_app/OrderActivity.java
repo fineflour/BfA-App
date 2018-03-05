@@ -58,6 +58,7 @@ public class OrderActivity extends BaseActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         setTitle("Order Bible");
@@ -105,17 +106,14 @@ public class OrderActivity extends BaseActivity  {
                 new AddNewOrder().execute();
                 v.setVisibility(View.INVISIBLE);
                 txtOrderResult.setText(R.string.msgOrderSent);
-
             }
         });
-
     }
 
     private class AddNewOrder extends AsyncTask<String, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
         }
         @Override
         protected Void doInBackground(String... arg) {
