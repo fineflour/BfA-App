@@ -39,6 +39,8 @@ public class WebviewActivity extends AppCompatActivity implements TurbolinksAdap
     private long lastDownload=-1L;
     String downloadUrl = "";
     String fileName = "";
+    private static final String INTENT_URL = "activity_order://order";
+    private String location;
 
     private  TurbolinksView turbolinksView;
     //private WebView top_menu_view;
@@ -53,6 +55,8 @@ public class WebviewActivity extends AppCompatActivity implements TurbolinksAdap
         turbolinksView = (TurbolinksView)findViewById(R.id.turbolinks_view);
         requestAppPermissions();
 
+        location = getIntent().getStringExtra(INTENT_URL) != null ? getIntent().getStringExtra(INTENT_URL) : strUrl;
+
         TurbolinksSession.getDefault(this)
                 .activity(this)
                 .adapter(this)
@@ -60,6 +64,7 @@ public class WebviewActivity extends AppCompatActivity implements TurbolinksAdap
                 .visit(strUrl);
 
         registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
 
         TurbolinksSession.getDefault(this)
                 .activity(this)
@@ -299,7 +304,9 @@ public class WebviewActivity extends AppCompatActivity implements TurbolinksAdap
 
     @Override
     public void visitProposedToLocationWithAction(String location, String action) {
-
+        Intent intent = new Intent(this, OrderActivity.class);
+        //intent.putExtra(INTENT_URL, location);
+        this.startActivity(intent);
     }
 }
 

@@ -164,5 +164,6 @@
 
     <string name="msgOrderSent">Order has been sent successfully!</string>
     <string name="server_client_id">1097183891794-jef61o7o3tmbgb8tcokeqp6nrem2vfn0.apps.googleusercontent.com</string>
+    <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://biblestudy.herokuapp.com\",\n  }\n}]</string>
 
 </resources>

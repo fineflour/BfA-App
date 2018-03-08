@@ -64,13 +64,13 @@ public class OrderActivity extends BaseActivity  {
         setTitle("Order Bible");
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface
-                    .getNetworkInterfaces(); en.hasMoreElements();) {
+                    .getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = (NetworkInterface) en.nextElement();
                 for (Enumeration<InetAddress> enumIpAddr = intf
-                        .getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
-                        ipAddress = inetAddress .getHostAddress().toString();
+                        ipAddress = inetAddress.getHostAddress().toString();
                     }
                 }
             }
@@ -78,13 +78,13 @@ public class OrderActivity extends BaseActivity  {
             Log.e(TAG, "Exception in Get IP Address: " + ex.toString());
         }
 
-        txtFirstName = (EditText)findViewById(R.id.txtFirstName);
-        txtLastName = (EditText)findViewById(R.id.txtLastName);
-        txtEmail = (EditText)findViewById(R.id.txtEmail);
-        txtAddress1 = (EditText)findViewById(R.id.txtAddress1);
-        txtAddress2 = (EditText)findViewById(R.id.txtAddress2);
-        txtCity = (EditText)findViewById(R.id.txtCity);
-        txtZipcode = (EditText)findViewById(R.id.txtZipcode);
+        txtFirstName = (EditText) findViewById(R.id.txtFirstName);
+        txtLastName = (EditText) findViewById(R.id.txtLastName);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtAddress1 = (EditText) findViewById(R.id.txtAddress1);
+        txtAddress2 = (EditText) findViewById(R.id.txtAddress2);
+        txtCity = (EditText) findViewById(R.id.txtCity);
+        txtZipcode = (EditText) findViewById(R.id.txtZipcode);
         txtOrderResult = (TextView) findViewById(R.id.txtOrderResult);
         chkBlogSubscribe = (CheckBox) findViewById(R.id.chkBlogSubscribe);
         spnState = (Spinner) findViewById(R.id.spinerStates);
@@ -97,9 +97,9 @@ public class OrderActivity extends BaseActivity  {
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnState.setAdapter(staticAdapter);
 
-        Button btnPlaceOrder  = (Button)findViewById(R.id.btnPlaceOrder);
+        Button btnPlaceOrder = (Button) findViewById(R.id.btnPlaceOrder);
 
-       btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -108,6 +108,10 @@ public class OrderActivity extends BaseActivity  {
                 txtOrderResult.setText(R.string.msgOrderSent);
             }
         });
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
     }
 
     private class AddNewOrder extends AsyncTask<String, Void, Void> {

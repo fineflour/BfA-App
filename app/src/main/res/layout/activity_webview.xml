@@ -4,17 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto">
-        <ScrollView
-            android:id="@+id/scroll_view"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@+id/header"
             android:fillViewport="true">
-
                 <com.basecamp.turbolinks.TurbolinksView
                     android:id="@+id/turbolinks_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 </com.basecamp.turbolinks.TurbolinksView>
-        </ScrollView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/header"
+            android:fillViewport="true">
+        </RelativeLayout>
 </RelativeLayout>
